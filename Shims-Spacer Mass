@@ -1,0 +1,31 @@
+version "5.0"
+#=========================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2019 IR2.1 (build 3099)
+# ---- Date    :    Donnerstag, 22. August 2019 - 16:23:45
+#---------------------------------------------------------
+DECLARE opis
+MEASURE CONTROL NOTE GET ( "Surface Distance", opis )
+MACRO ECHO ( $opis )
+IF $opis == 0
+    declare dev
+    MEASURE CONTROL DEVIATION GET ( "Surface distance",dev, )
+    DECLARE dev1 STRING_DECIMAL ( $dev,1 )
+    macro ECHO ( $dev1 )
+    DECLARE mass
+    SET mass EXPR(5-$dev1)
+    macro ECHO ( $mass )
+    MEASURE CONTROL NOTE ( "Surface distance",  "           ${mass}", )
+    VIEW ANNOTATION TEMPLATE ASSIGN ( "FEE_Auflage_Neu+Spacer Shims", "User", )
+ELSE
+    declare dev
+    MEASURE CONTROL DEVIATION GET ( "Surface distance",dev, )
+    DECLARE dev1 STRING_DECIMAL ( $dev,1 )
+    macro ECHO ( $dev1 )
+    DECLARE mass
+    SET mass EXPR($opis-$dev1)
+    macro ECHO ( $mass )
+    MEASURE CONTROL NOTE ( "Surface distance",  "           ${mass}", )
+    VIEW ANNOTATION TEMPLATE ASSIGN ( "FEE_Auflage_Neu+Spacer Shims", "User", )
+ENDIF

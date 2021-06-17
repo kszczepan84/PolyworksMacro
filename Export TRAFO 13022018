@@ -1,0 +1,31 @@
+version "5.0"
+#=========================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Donnerstag, 8. Februar 2018 - 16:29:26
+#---------------------------------------------------------
+#Points export to txt ( for TRAFO software purposes )
+#Written and copyright by Polish Association of Alcoholics
+
+DECLARE Number
+DECLARE Path
+
+TREEVIEW FEATURE CIRCLE COUNT SELECTED GET ( Number )
+
+if $Number == 0
+    MACRO PAUSE ( "RoboPunkte Export", "Wählen Sie gemessene Kreise, bitte","${_NEWLINE}Danach bitte noch einmal Macro starten.")
+    MACRO END
+ENDIF
+
+FEATURE PRIMITIVE POINT FROM_CIRCLES ( "Robo 1", )
+TREEVIEW FEATURE SELECT NONE ( "On" )
+MACRO PAUSE ( "Datei wählen", "Bitte markieren .txt Datei, wo Punkte soll importiert sein" )
+MACRO INPUT FILE_PATH ( Path )
+TREEVIEW FEATURE POINT SELECT MEASURED ( "On" )
+FILE EXPORT_OBJECT PRIMITIVES_TO_TEXT_FILE NOMINAL_PRIMITIVES ( "Off" )
+FILE OPTIONS EXPORT TEXT_FILE DECIMAL_SYMBOL ( "Comma" )
+FILE OPTIONS EXPORT TEXT_FILE FIELD_DELIMITER ( "Space" )
+FILE OPTIONS EXPORT TEXT_FILE NB_DIGITS_AFTER_DECIMAL_SYMBOL ( 2 )
+FILE EXPORT_OBJECT PRIMITIVES_TO_TEXT_FILE POINTS2 ( $Path, "Points Only", "Feature", )
+

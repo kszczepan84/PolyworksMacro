@@ -1,0 +1,122 @@
+version "5.0"
+#=======================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Donnerstag, 28. Juni 2018 - 09:20:12
+#-------------------------------------------------------
+DECLARE point_nr
+DECLARE i 1
+DECLARE Pname
+DECLARE Pend
+
+
+TREEVIEW FEATURE POINT NAME SELECTED GET ( Pname )
+SET Pend SIZE (Pname)
+TREEVIEW FEATURE POINT COUNT SELECTED GET ( point_nr)
+
+if $point_nr == 0
+    MACRO PAUSE ("Fehler!","Wählen Sie 4 Punkte für Nivellierung aus. Noch einmal starten...")
+    MACRO END
+ENDIF
+
+WHILE $i <= $Pend
+    TREEVIEW OBJECT PROPERTIES NAME ("Z$i",$Pname[$i])
+    ++ i
+ENDWHILE 
+
+VIEW ANNOTATION TEMPLATE ASSIGN ( "Point Z", "User", )
+TREEVIEW OBJECT SELECT NONE
+
+DECLARE Z1
+DECLARE Z2
+DECLARE Z3
+DECLARE Z4
+DECLARE Zmax
+
+TREEVIEW OBJECT SELECT ( "Z1 -meas-" )
+TREEVIEW PRIMITIVE POINT PROPERTIES POINT GET ( ,, Z1)
+TREEVIEW OBJECT SELECT NONE
+
+TREEVIEW OBJECT SELECT ( "Z2 -meas-" )
+TREEVIEW PRIMITIVE POINT PROPERTIES POINT GET ( ,, Z2)
+TREEVIEW OBJECT SELECT NONE
+
+TREEVIEW OBJECT SELECT ( "Z3 -meas-" )
+TREEVIEW PRIMITIVE POINT PROPERTIES POINT GET ( ,, Z3)
+TREEVIEW OBJECT SELECT NONE
+
+TREEVIEW OBJECT SELECT ( "Z4 -meas-" )
+TREEVIEW PRIMITIVE POINT PROPERTIES POINT GET ( ,, Z4)
+TREEVIEW OBJECT SELECT NONE
+
+
+IF $Z1 >= $Z2
+    IF $Z1 >= $Z3
+        IF $Z1 >= $Z4
+            DECLARE Zmax $Z1
+            MACRO ECHO ( "Zmax to Z1" )
+            IF $Zmax > 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+            IF $Zmax < 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+IF $Z2 >= $Z1
+    IF $Z2 >= $Z3
+        IF $Z2 >= $Z4
+            DECLARE Zmax $Z2
+            MACRO ECHO ( "Zmax to Z2" )
+            IF $Zmax > 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+            IF $Zmax < 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+IF $Z3 >= $Z2
+    IF $Z3 >= $Z1
+        IF $Z3 >= $Z4
+            DECLARE Zmax $Z3
+            MACRO ECHO ( "Zmax to Z3" )
+            IF $Zmax > 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+            IF $Zmax < 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+IF $Z4 >= $Z2
+    IF $Z4 >= $Z3
+        IF $Z4 >= $Z1
+            DECLARE Zmax $Z4
+            MACRO ECHO ( "Zmax to Z4" )
+            IF $Zmax > 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+            IF $Zmax < 0
+                TREEVIEW OBJECT_GROUP SELECT ( "probing session 1", "On" )
+                ALIGN MANUAL TRANSLATION ( 0.0, 0.0, -$Zmax, )
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+TREEVIEW OBJECT SELECT NONE

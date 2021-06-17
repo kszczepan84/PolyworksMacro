@@ -1,0 +1,9 @@
+version "5.0"
+#========================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Donnerstag, 19. April 2018 - 12:55:01
+#--------------------------------------------------------
+FORMATTED_REPORT OPTIONS LAYOUT ( "C:\Users\krzysztof.sz\Desktop\Polyworks\Thyssen Krupp_Ebenheit_19.04.2018.ezl" )
+VIEW ANNOTATION TEMPLATE DEFAULT ( "Feature", "Point Z", "User" )

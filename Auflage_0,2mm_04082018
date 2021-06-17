@@ -1,0 +1,18 @@
+version "5.0"
+#=======================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Sonntag, 18. Februar 2018 - 01:38:59
+#-------------------------------------------------------
+
+TREEVIEW OBJECT SELECT NONE
+TREEVIEW REFERENCE SELECT ALL
+MEASURE TOLERANCE ASSIGN_TO_OBJECTS ( 0.2, 0.2, -0.2, -0.2, )
+TREEVIEW OBJECT SELECT NONE
+VIEW ANNOTATION TEMPLATE DEFAULT ( "Comparison Point", "Auflage_alt", "User" )
+VIEW ANNOTATION TEMPLATE DEFAULT ( "Feature", "Fee Stift", "User" )
+MEASURE CONTROL TEMPLATE DEFAULT ( "Circle Feature", "FEE_Stift_0,2", "User" )
+MEASURE CONTROL TEMPLATE DEFAULT ( "Surface Comparison Point", "FEE 0,2", "User" )
+MEASURE CONTROL TEMPLATE ASSIGN ( "FEE_Stit_0,2","User", )
+

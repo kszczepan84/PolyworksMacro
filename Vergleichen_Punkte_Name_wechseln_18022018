@@ -1,0 +1,42 @@
+version "5.0"
+#=====================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    IMInspect
+# ---- Version :    15.9
+# ---- Date    :    Freitag, 22. Novemeber 2013 - 13:32:45
+# ---- Author  :    Thomas Wiest (Duwe-3d AG)
+# - Describtion:    Eine getroffene Auswahl von Vergleichspunkten mit Namen und Index umbenennen.
+# --- Optimiert:    17. Februar 2016 - Matthias Gaube (Duwe-3d AG)
+#-----------------------------------------------------
+DECLARE nbCMP
+DECLARE CMPname
+DECLARE i
+DECLARE NrCMPStart 1
+DECLARE NrCMPEnd
+DECLARE CMPstartNBR
+DECLARE CMPnewname
+DECLARE InputBox {"string","Name","MP","integer","Startindex",1}
+
+
+# Die Anzahl der ausgewählten Vergleichspunkte ermitteln
+TREEVIEW COMPARISON_POINT NAME SELECTED GET(CMPname)
+SET NrCmpEnd SIZE (CMPname)
+TREEVIEW COMPARISON_POINT COUNT SELECTED GET(nbCMP)
+
+if $nbCMP == 0
+    MACRO PAUSE ("Vergleichspunkte auswählen","Wählen Sie mindestens einen Vergleichspunkt aus.${_NEWLINE} ${_NEWLINE}Danach bitte nochmals starten.")
+    MACRO END
+ENDIF
+
+# Übergabe des Arrays
+MACRO INPUT MULTIPLE_PARAMETERS("Eingabefenster",,$InputBox,CMPnewname,CMPstartNBR)
+
+set i $NrCMPStart
+WHILE $i <= $NrCMPEnd
+    
+    TREEVIEW OBJECT PROPERTIES NAME ("$CMPnewname ${CMPstartNBR}",$CMPname[$i])
+    ++ CMPstartNBR
+    ++ i
+ENDWHILE 
+
+TREEVIEW OBJECT SELECT NONE

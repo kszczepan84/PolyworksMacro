@@ -1,0 +1,25 @@
+version "5.0"
+#=====================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2018 IR2 (build 3890)
+# ---- Date    :    Dienstag, 31. Juli 2018 - 15:19:24
+#-----------------------------------------------------
+TREEVIEW OBJECT SELECT NONE
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*EGT*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*AUFNAHMESTIFT*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*STIFT*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*H-RAHMEN*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*EGT*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "**HUELSE*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*BUCHSE*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*AUFLAGE*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*BUNDBOHRBUCHSE*", "On" )
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*ZENTRIERUNG*", "On" )
+TREEVIEW REFERENCE GROUP ( "Arbeit Gruppe" )
+
+
+
+
+
+

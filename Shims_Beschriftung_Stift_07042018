@@ -1,0 +1,17 @@
+version "5.0"
+#==================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Montag, 5. M‰rz 2018 - 10:38:36
+#--------------------------------------------------
+DECLARE value_X
+DECLARE value_Y
+DECLARE value_Z
+MACRO INPUT STRING ( value_X,"Shim", "Einlegen Richtung X Shim Maﬂ",  )
+MACRO INPUT STRING ( value_Y,"Shim", "Einlegen Richtung Y Shim Maﬂ",  )
+MACRO INPUT STRING ( value_Z,"Shim", "Einlegen Richtung Z Shim Maﬂ",  )
+VIEW ANNOTATION TEMPLATE ASSIGN ( "Fee Stift+Shims", "User", )
+MEASURE CONTROL NOTE ( "X", "   ${value_X}", )
+MEASURE CONTROL NOTE ( "Y", "   ${value_Y}", )
+MEASURE CONTROL NOTE ( "Z", "   ${value_Z}", )

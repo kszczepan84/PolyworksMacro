@@ -1,0 +1,10 @@
+version "5.0"
+#======================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2018 IR2 (build 3890)
+# ---- Date    :    Freitag, 24. August 2018 - 08:26:36
+#------------------------------------------------------
+TREEVIEW OBJECT SELECT FROM_NAME_PATTERN ( "*AUFLAGE*", "On" )
+SELECT REFERENCE_ELEMENTS FROM_COLOR ( 0, 128, 0, )
+TREEVIEW OBJECT SELECT NONE

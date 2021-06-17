@@ -1,0 +1,34 @@
+version "5.0"
+#=====================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2018 IR2 (build 3890)
+# ---- Date    :    Samstag, 4. August 2018 - 23:41:23
+#-----------------------------------------------------
+DECLARE name
+DECLARE teil1
+DECLARE teil2
+DECLARE teil3
+DECLARE position "Pos."
+DECLARE i 1
+
+
+MACRO PAUSE ( "Teilname wechseln", "Wählen Sie ein Referenz Objekt und warten Sie 3 Sekunden, bitte " )
+MACRO INTERACTIVE_MODE SCRIPTED_MODE SLEEP ( 3000 )
+SELECT OBJECTS OPTIONS COMPARISON_POINT 
+TREEVIEW OBJECT PROPERTIES NAME GET (name)
+MACRO STRING SUBSTRING ( $name,1,13,teil1 )
+MACRO STRING SUBSTRING ( $name,7,1,teil2 )
+MACRO STRING SUBSTRING ( $name,23,9,teil3 )
+DECLARE teil "${teil1}${teil2}${teil3}"
+MACRO ECHO ($name)
+MACRO ECHO ($teil1)
+MACRO ECHO ($teil2)
+MACRO ECHO ($teil3)
+MACRO ECHO ($teil)
+MACRO ECHO ( $position) 
+
+MACRO PAUSE ( "Teilname wechseln", "Wählen Sie ein Objekt für Messung und warten Sie 3 Sekunden, bitte " )
+
+MACRO INTERACTIVE_MODE SCRIPTED_MODE SLEEP ( 3000 )
+TREEVIEW OBJECT PROPERTIES NAME ( ${teil} )

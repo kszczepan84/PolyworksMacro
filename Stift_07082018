@@ -1,0 +1,80 @@
+version "5.0"
+#=======================================================
+# ---- InnovMetric Software Inc.
+# ---- Module  :    PolyWorks|Inspector
+# ---- Version :    2017 IR8 (build 5766)
+# ---- Date    :    Dienstag, 6. Februar 2018 - 15:25:49
+#-------------------------------------------------------
+DECLARE vNbCylinder
+DECLARE i 1
+DECLARE x 1
+DECLARE q 1
+DECLARE double
+DECLARE c 1
+DECLARE p 1
+DECLARE z 1
+DECLARE r 1
+
+TREEVIEW FEATURE CYLINDER COUNT SELECTED GET (vNbCylinder)
+
+if $vNbCylinder == 0
+    MACRO PAUSE ("Zylinder auswählen","Wählen Sie mindestens ein Zylinder aus.${_NEWLINE} ${_NEWLINE}Danach bitte nochmals starten.")
+    MACRO END
+ENDIF
+
+WHILE $i <= $vNbCylinder
+    FEATURE PRIMITIVE CIRCLE FROM_CYLINDERS ( "K${i}" )
+    ++ i
+ENDWHILE 
+
+SET double EXPR ( 2*$vNbCylinder )
+WHILE $q <= $double
+    TREEVIEW OBJECT SELECT NONE
+    TREEVIEW OBJECT SELECT ( "K${q}" )
+    ++ q
+    TREEVIEW OBJECT SELECT ( "K${q}" )
+    ++ q
+    FEATURE PRIMITIVE CIRCLE FROM_CIRCLES ( "Kreis_mitte${x}", )
+    ++ x
+    TREEVIEW OBJECT SELECT NONE
+ENDWHILE
+
+TREEVIEW FEATURE CIRCLE SELECT ALL ( "On" )
+FEATURE REMOVE_DEPENDENCIES ( )
+TREEVIEW OBJECT SELECT NONE
+
+WHILE $c <= $double
+    TREEVIEW OBJECT SELECT ( "K${c}", )
+    ++ c
+ENDWHILE
+
+EDIT OBJECT DELETE ( )
+TREEVIEW OBJECT SELECT NONE
+
+WHILE $p <= $vNbCylinder
+    TREEVIEW OBJECT SELECT ( "Kreis_mitte${p}", )
+    FEATURE PRIMITIVE PLANE FROM_CIRCLES ( "Ebene_mitte${p}" )
+    ++ p
+ENDWHILE
+
+TREEVIEW FEATURE PLANE SELECT ALL (  )
+FEATURE REMOVE_DEPENDENCIES ( )
+TREEVIEW OBJECT SELECT NONE
+
+WHILE $z <= $vNbCylinder
+    TREEVIEW OBJECT SELECT ( "Ebene_mitte${z}", )
+    ++ z
+ENDWHILE
+
+FEATURE NOMINAL_MEASURED SWAP_PRIMITIVES ( )
+TREEVIEW OBJECT SELECT NONE
+
+WHILE $r <= $vNbCylinder
+    TREEVIEW OBJECT SELECT NONE
+    TREEVIEW OBJECT SELECT ( "Kreis_mitte${r}", )
+    TREEVIEW FEATURE PROPERTIES MEASUREMENT_METHOD ( "Probe", )
+    TREEVIEW FEATURE CURVE_BASED PROPERTIES PROBE CONSTRAINING_PLANE METHOD ( "Use Plane Feature", )
+    TREEVIEW FEATURE CURVE_BASED PROPERTIES PROBE CONSTRAINING_PLANE PLANE_FEATURE ( "Ebene_mitte${r}", )
+    FEATURE PRIMITIVE CIRCLE PROBE (,"Kreis_mitte${r}",)
+    ++ r
+ENDWHILE
